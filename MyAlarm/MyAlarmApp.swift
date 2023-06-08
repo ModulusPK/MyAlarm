@@ -14,4 +14,14 @@ struct MyAlarmApp: App {
             ContentView()
         }
     }
+    init(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            if granted {
+                print("notification Authorization successful!")
+            }
+            else {
+                print("Notification authorization denied.")
+            }
+        }
+    }
 }
