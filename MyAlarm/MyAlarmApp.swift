@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MyAlarmApp: App {
+    @StateObject var alarms = AlarmViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(alarms)
         }
     }
     init(){

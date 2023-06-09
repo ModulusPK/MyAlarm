@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var alarms = AlarmViewModel()
+    @EnvironmentObject var alarms : AlarmViewModel
     @State private var x = ""
     let days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    @State private var path = NavigationPath()
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             VStack {
                 ForEach(alarms.alarms){alarm in
                     HStack{
@@ -38,7 +39,9 @@ struct ContentView: View {
                     .padding()
                     .background(alarm.active ? .white : .gray)
                     .clipShape(RoundedRectangle(cornerRadius: 15))
-                    
+                    .onTapGesture{
+                        path.append(alarm)
+                    }
                 }
                 Spacer()
                 NavigationLink(destination: AddAlarmView(alarmsVM: alarms)){
@@ -54,8 +57,11 @@ struct ContentView: View {
                 }
             }
             .padding()
-            .background(.black.opacity(0.9))
+            .background(Color("AppBg"))
             .navigationTitle("Your Alarms")
+            .navigationDestination(for: Alarm.self) {alarm in
+                AlarmRingingView()
+            }
         }
     }
 }

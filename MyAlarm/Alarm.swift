@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Alarm : Identifiable, Codable {
+struct Alarm : Identifiable, Codable, Hashable {
     let id : String
     var title : String
     var alarmTime : Date

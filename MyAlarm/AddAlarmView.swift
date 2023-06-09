@@ -99,7 +99,7 @@ struct AddAlarmView: View {
             Spacer()
         }
         .padding()
-        .background(.black.opacity(0.9))
+        .background(Color("AppBg"))
         .navigationTitle("Alarm")
         .navigationBarTitleDisplayMode(.inline)
     }
