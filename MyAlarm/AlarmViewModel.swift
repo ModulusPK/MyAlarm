@@ -26,6 +26,16 @@ class AlarmViewModel : ObservableObject{
         }
     }
     
+    func toggleAlarm(alarm : Alarm){
+//        alarms[index] = alarm
+        var al = Alarm(id: alarm.id, title: alarm.title, alarmTime: alarm.alarmTime, active: alarm.active, repeatDays: alarm.repeatDays)
+        al.active.toggle()
+        guard let index = alarms.firstIndex(where: {
+            $0.id == al.id
+        }) else {return}
+        alarms[index] = al
+    }
+    
     func setAlarm (alarm : Alarm) {
         if alarm.toRepeat{
             var triggers: [UNNotificationTrigger] = []

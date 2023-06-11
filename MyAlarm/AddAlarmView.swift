@@ -70,8 +70,8 @@ struct AddAlarmView: View {
                             .font(.caption2)
                             .padding(5)
                             .frame(width: 40)
-                            .background(bgColor)
-                            .foregroundColor(foreColor)
+                            .background(.white)
+                            .foregroundColor(.black)
                             .clipShape(Circle())
                             .onTapGesture {
                                 let _ = dayBackgroundColor(index: index + 1)
@@ -85,8 +85,8 @@ struct AddAlarmView: View {
                         .font(.caption)
                     Text("Alarm Ringtone")
                     
-                    MPVolumeViewWrapper(systemVolume: $systemVolume)
-                        .frame(height: 0)
+//                    MPVolumeViewWrapper(systemVolume: $systemVolume)
+//                        .frame(height: 0)
                     
                     Slider(value: $systemVolume, in: 0...1)
                 }.padding(.vertical)
@@ -107,14 +107,10 @@ struct AddAlarmView: View {
     func dayBackgroundColor(index : Int){
         if selectedDays.contains(index){
             selectedDays.removeAll{ $0 == index }
-            bgColor = .white
-            foreColor = .black
         }
         else
         {
             selectedDays.append(index)
-            bgColor = .black
-            foreColor = .white
         }
     }
     
@@ -141,18 +137,18 @@ struct AddAlarmView_Previews: PreviewProvider {
 }
 
 
-struct MPVolumeViewWrapper: UIViewRepresentable {
-    @Binding var systemVolume: Float
-    
-    func makeUIView(context: Context) -> MPVolumeView {
-        let volumeView = MPVolumeView()
-        volumeView.showsVolumeSlider = false
-        volumeView.showsRouteButton = false
-        return volumeView
-    }
-    
-    func updateUIView(_ uiView: MPVolumeView, context: Context) {
-        let volumeViewSlider = uiView.subviews.first { $0 is UISlider } as? UISlider
-        volumeViewSlider?.value = systemVolume
-    }
-}
+//struct MPVolumeViewWrapper: UIViewRepresentable {
+//    @Binding var systemVolume: Float
+//
+//    func makeUIView(context: Context) -> MPVolumeView {
+//        let volumeView = MPVolumeView()
+//        volumeView.showsVolumeSlider = false
+//        volumeView.showsRouteButton = false
+//        return volumeView
+//    }
+//
+//    func updateUIView(_ uiView: MPVolumeView, context: Context) {
+//        let volumeViewSlider = uiView.subviews.first { $0 is UISlider } as? UISlider
+//        volumeViewSlider?.value = systemVolume
+//    }
+//}
