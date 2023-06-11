@@ -34,6 +34,7 @@ class AlarmViewModel : ObservableObject{
             $0.id == al.id
         }) else {return}
         alarms[index] = al
+        removeAlarm(alarm: al)
     }
     
     func setAlarm (alarm : Alarm) {
@@ -85,8 +86,23 @@ class AlarmViewModel : ObservableObject{
         }
     }
     
-    func removeAlarm(alarmIdentifier: String){
-        
+    func removeAlarm(alarm: Alarm){
+        if alarm.active {
+            setAlarm(alarm: alarm)
+        }
+        else{
+            if alarm.toRepeat{
+                let Ids = alarm.repeatDays.indices.map{index in
+                    "\(alarm.id)-\(index)"
+                }
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: Ids)
+                print("Alarms disabled successfully")
+            }else{
+                let identifier = alarm.id
+                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
+                print("Alarm disabled successfully")
+            }
+        }
     }
     
     func saveToFileManager(){

@@ -115,7 +115,7 @@ struct AddAlarmView: View {
     }
     
     func save(){
-        var alarm = Alarm(id: "\(alarmTitle):\(alarmTime.formatted())", title: alarmTitle, alarmTime: alarmTime, active: true, repeatDays: dateComponentsArray)
+        let alarm = Alarm(id: "\(alarmTitle):\(alarmTime.formatted())", title: alarmTitle, alarmTime: alarmTime, active: true, repeatDays: dateComponentsArray)
         
         alarmsVM.alarms.append(alarm)
         

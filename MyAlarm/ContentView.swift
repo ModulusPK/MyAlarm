@@ -84,6 +84,7 @@ struct ContentView: View {
                     }
                     Spacer()
                 }
+                .padding(.vertical)
                 }
                 .padding()
                 .background(Color("AppBg"))
