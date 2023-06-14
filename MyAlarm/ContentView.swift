@@ -8,16 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var alarms : AlarmViewModel
     
+    @EnvironmentObject var alarms : AlarmViewModel
     @State private var path = NavigationPath()
+    
     var body: some View {
         NavigationStack(path: $path) {
             VStack (alignment: .leading){
-                    Text("Your Alarms")
-                        .padding(.vertical)
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
                     ScrollView{
                         ForEach(alarms.alarms){alarm in
                             HStack{
@@ -27,17 +24,11 @@ struct ContentView: View {
                                         .font(.largeTitle)
                                     HStack{
                                         ForEach(alarm.daysInWords, id: \.self){ day in
-//                                            if alarms.alarms[index].repeatDays[day].hour == day{
-//                                                Text("")
-//                                            }else{
-//                                                Text("")
-//                                            }
                                             Text(day)
                                         }
                                     }
                                 }
                                 Spacer()
-                                
                                 if(alarm.active){
                                     Image(systemName: "bell")
                                         .resizable()
@@ -71,7 +62,7 @@ struct ContentView: View {
                     Spacer()
                 HStack{
                     Spacer()
-                    NavigationLink(destination: AddAlarmView(alarmsVM: alarms)){
+                    NavigationLink(destination: AddAlarmView()){
                         AddAlarmIcon()
                             .foregroundColor(.accentColor)
                             .frame(width: 50, height: 60)
@@ -87,8 +78,9 @@ struct ContentView: View {
                 .padding(.vertical)
                 }
                 .padding()
-                .background(Color("AppBg"))
+                .background(const.appBg)
                 .edgesIgnoringSafeArea(.bottom)
+                .navigationTitle("Your Alarms")
                 .navigationDestination(for: Alarm.self) {alarm in
                     AlarmRingingView()
             }
@@ -98,8 +90,10 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @StateObject static var alarm = AlarmViewModel()
     static var previews: some View {
         ContentView()
+            .environmentObject(alarm)
     }
 }
 

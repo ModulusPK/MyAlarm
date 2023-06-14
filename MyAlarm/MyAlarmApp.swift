@@ -13,7 +13,7 @@ struct MyAlarmApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AlarmRingingView()
                 .environmentObject(alarms)
         }
     }

@@ -9,15 +9,18 @@ import SwiftUI
 import MediaPlayer
 
 struct AddAlarmView: View {
-    @ObservedObject var alarmsVM : AlarmViewModel
+    
+    @EnvironmentObject var alarmsVM: AlarmViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var alarmTitle = ""
-    @State private var alarmTime = Date.now
-    let days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    @State private var alarmTitle: String = ""
+    @State private var alarmTime: Date = .now
+    @State private var bgColor: Color = .white
+    @State private var foreColor: Color = .black
+    @State private var systemVolume: Float = 0.5
     @State private var selectedDays = [Int]()
-    var dateComponentsArray : [DateComponents] {
+    let days: [String] = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
+    var dateComponentsArray: [DateComponents] {
         var dateComponentsArray: [DateComponents] = []
-        
         for day in selectedDays{
             var dateComp = DateComponents()
             dateComp.hour = Calendar.current.component(.hour, from: alarmTime)
@@ -27,13 +30,10 @@ struct AddAlarmView: View {
         }
         return dateComponentsArray
     }
-    @State private var bgColor = Color.white
-    @State private var foreColor = Color.black
-    @State private var systemVolume: Float = 0.5
+    
     var body: some View {
         VStack{
             Spacer()
-            
             VStack(alignment: .leading){
                 HStack{
                     VStack(alignment: .leading){
@@ -55,9 +55,7 @@ struct AddAlarmView: View {
                         .padding(.vertical)
                         .datePickerStyle(.automatic)
                         .labelsHidden()
-                    
                     Spacer()
-                    
                     Text("Save")
                         .onTapGesture {
                             save()
@@ -84,12 +82,9 @@ struct AddAlarmView: View {
                     Text("Alarm Tune")
                         .font(.caption)
                     Text("Alarm Ringtone")
-                    
-//                    MPVolumeViewWrapper(systemVolume: $systemVolume)
-//                        .frame(height: 0)
-                    
                     Slider(value: $systemVolume, in: 0...1)
-                }.padding(.vertical)
+                }
+                .padding(.vertical)
                 
             }
             .padding()
@@ -99,9 +94,8 @@ struct AddAlarmView: View {
             Spacer()
         }
         .padding()
-        .background(Color("AppBg"))
+        .background(const.appBg)
         .navigationTitle("Alarm")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     func dayBackgroundColor(index : Int){
@@ -131,24 +125,8 @@ struct AddAlarmView_Previews: PreviewProvider {
     @StateObject static var x = AlarmViewModel()
     static var previews: some View {
         NavigationStack{
-            AddAlarmView(alarmsVM: x)
+            AddAlarmView()
+                .environmentObject(x)
         }
     }
 }
-
-
-//struct MPVolumeViewWrapper: UIViewRepresentable {
-//    @Binding var systemVolume: Float
-//
-//    func makeUIView(context: Context) -> MPVolumeView {
-//        let volumeView = MPVolumeView()
-//        volumeView.showsVolumeSlider = false
-//        volumeView.showsRouteButton = false
-//        return volumeView
-//    }
-//
-//    func updateUIView(_ uiView: MPVolumeView, context: Context) {
-//        let volumeViewSlider = uiView.subviews.first { $0 is UISlider } as? UISlider
-//        volumeViewSlider?.value = systemVolume
-//    }
-//}

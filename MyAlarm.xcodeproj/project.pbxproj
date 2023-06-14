@@ -16,6 +16,7 @@
 		295BC6082A31A4B00061EC76 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC6072A31A4B00061EC76 /* Alarm.swift */; };
 		295BC60A2A31A98F0061EC76 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */; };
 		295BC60C2A31AD900061EC76 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC60B2A31AD900061EC76 /* AddAlarmView.swift */; };
+		298D17312A39AC5300A2CF1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D17302A39AC5300A2CF1F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		295BC6072A31A4B00061EC76 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		295BC60B2A31AD900061EC76 /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
+		298D17302A39AC5300A2CF1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				295BC5FB2A31A48F0061EC76 /* ContentView.swift */,
 				295BC60B2A31AD900061EC76 /* AddAlarmView.swift */,
 				293C1F652A3274B000E717DA /* AlarmRingingView.swift */,
+				298D17302A39AC5300A2CF1F /* Constants.swift */,
 				293C1F632A323FB900E717DA /* CustomShapes.swift */,
 				295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */,
 				295BC6072A31A4B00061EC76 /* Alarm.swift */,
@@ -159,6 +162,7 @@
 				295BC5FA2A31A48F0061EC76 /* MyAlarmApp.swift in Sources */,
 				293C1F662A3274B000E717DA /* AlarmRingingView.swift in Sources */,
 				295BC6082A31A4B00061EC76 /* Alarm.swift in Sources */,
+				298D17312A39AC5300A2CF1F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
