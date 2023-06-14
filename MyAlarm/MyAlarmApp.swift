@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct MyAlarmApp: App {
+    
     @StateObject var alarms = AlarmViewModel()
     
     var body: some Scene {
@@ -17,12 +18,12 @@ struct MyAlarmApp: App {
                 .environmentObject(alarms)
         }
     }
-    init(){
+    
+    init() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             if granted {
                 print("notification Authorization successful!")
-            }
-            else {
+            } else {
                 print("Notification authorization denied.")
             }
         }
