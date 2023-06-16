@@ -147,6 +147,6 @@ struct AlarmRingingScreen: View {
 
 struct AlarmRingingView_Previews: PreviewProvider {
     static var previews: some View {
-        AlarmRingingView()
+        AlarmRingingScreen()
     }
 }
