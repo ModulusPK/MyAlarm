@@ -14,7 +14,7 @@ struct MyAlarmApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AlarmRingingView()
+            AlarmRingingScreen()
                 .environmentObject(alarms)
         }
     }

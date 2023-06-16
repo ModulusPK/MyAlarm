@@ -9,11 +9,16 @@ import Foundation
 import UserNotifications
 
 @MainActor
-class AlarmViewModel : ObservableObject{
+class AlarmViewModel: ObservableObject {
+    
     @Published var alarms = [Alarm]()
     let directory = "Alarm"
     
-    init(){
+    init() {
+        fetchingDataFromDir()
+    }
+    
+    func fetchingDataFromDir() {
         let dir = getDocumentsDirectory().appendingPathComponent(directory)
         do {
             let data = try Data(contentsOf: dir)
@@ -26,7 +31,7 @@ class AlarmViewModel : ObservableObject{
         }
     }
     
-    func toggleAlarm(alarm : Alarm){
+    func toggleAlarm(alarm : Alarm) {
 //        alarms[index] = alarm
         var al = Alarm(id: alarm.id, title: alarm.title, alarmTime: alarm.alarmTime, active: alarm.active, repeatDays: alarm.repeatDays)
         al.active.toggle()
@@ -38,7 +43,7 @@ class AlarmViewModel : ObservableObject{
     }
     
     func setAlarm (alarm : Alarm) {
-        if alarm.toRepeat{
+        if alarm.toRepeat {
             var triggers: [UNNotificationTrigger] = []
 
             for dateComponents in alarm.repeatDays {
@@ -61,7 +66,7 @@ class AlarmViewModel : ObservableObject{
                     }
                 }
             }
-        }else{
+        } else {
             var dateComp = DateComponents()
             dateComp.hour = Calendar.current.component(.hour, from: alarm.alarmTime)
             dateComp.minute = Calendar.current.component(.minute, from: alarm.alarmTime)
@@ -86,7 +91,7 @@ class AlarmViewModel : ObservableObject{
         }
     }
     
-    func removeAlarm(alarm: Alarm){
+    func removeAlarm(alarm: Alarm) {
         if alarm.active {
             setAlarm(alarm: alarm)
         }

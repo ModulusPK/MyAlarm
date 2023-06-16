@@ -7,15 +7,21 @@
 
 import SwiftUI
 
-struct AlarmRingingView: View {
+struct AlarmRingingScreen: View {
     
     @Environment(\.dismiss) var dismiss
     @State private var countActive: Bool = false
     @State private var currentTime: TimeInterval = 0
+    let totalTime: Double = 3
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    
+//we need to pause the timer after 30 seconds and show a popup to the user
+    // the popup will tell the user to get up and walk for a while
+    // it will have two buttons, one for resuming the timer again and one for extending the break.
+    
     var body: some View {
-        VStack{
+        VStack {
             
             Spacer()
             
@@ -50,7 +56,7 @@ struct AlarmRingingView: View {
                     .stroke(.white, lineWidth: 10)
                     .overlay(
                         Circle()
-                            .trim(from: 0, to: currentTime/120)
+                            .trim(from: 0, to: currentTime/totalTime)
                             .stroke(Gradient(colors: [.red, .orange]), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
                             .rotationEffect(.degrees(-90))
                             .animation(.easeOut(duration: 1.5), value: currentTime)
@@ -59,7 +65,7 @@ struct AlarmRingingView: View {
             .onReceive(timer) {_ in
                 if countActive{
                     currentTime += 1
-                    if currentTime == 120{
+                    if currentTime == totalTime{
                         countActive = false
                         
                     }
@@ -75,7 +81,7 @@ struct AlarmRingingView: View {
                     startCount()
                 }
             } label: {
-                Text(countActive ? "Pause" : currentTime > 0 && currentTime < 120 ? "Resume" : "Start")
+                Text(countActive ? "Pause" : currentTime > 0 && currentTime < totalTime ? "Resume" : "Start")
                     .padding()
                     .padding(.horizontal, 80)
                     .bold()
@@ -90,7 +96,7 @@ struct AlarmRingingView: View {
                     .padding(.bottom)
             }
             
-            if countActive || (currentTime > 0 && currentTime < 120) {
+            if countActive || (currentTime > 0 && currentTime < totalTime) {
                 Button{
                     stopCount()
                 }label: {
@@ -124,7 +130,7 @@ struct AlarmRingingView: View {
     
     private func startCount() {
         countActive = true
-        if currentTime == 120{
+        if currentTime == totalTime {
             currentTime = 0
         }
     }
