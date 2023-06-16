@@ -70,7 +70,7 @@ struct AlarmRingingView: View {
                     startCount()
                 }
             }label: {
-                Text(countActive ? "Pause" : currentTime > 0 ? "Resume" : "Start")
+                Text(countActive ? "Pause" : currentTime > 0 && currentTime < 120 ? "Resume" : "Start")
                     .padding()
                     .padding(.horizontal, 80)
                     .bold()
@@ -85,7 +85,7 @@ struct AlarmRingingView: View {
                     .padding(.bottom)
             }
             
-            if countActive || currentTime > 0{
+            if countActive || (currentTime > 0 && currentTime < 120){
                 Button{
                     stopCount()
                 }label: {
