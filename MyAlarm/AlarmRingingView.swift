@@ -16,7 +16,9 @@ struct AlarmRingingView: View {
     
     var body: some View {
         VStack{
+            
             Spacer()
+            
             HStack{
                 Image(systemName: "figure.strengthtraining.functional")
                     .resizable()
@@ -32,6 +34,7 @@ struct AlarmRingingView: View {
             }
             
             Spacer()
+            
             VStack {
                 Text(formatTime(currentTime))
                     .font(.custom("Georgia", size: 70, relativeTo: .largeTitle))
@@ -62,7 +65,9 @@ struct AlarmRingingView: View {
                     }
                 }
             })
+            
             Spacer()
+            
             Button{
                 if countActive{
                     pauseCount()
@@ -103,7 +108,7 @@ struct AlarmRingingView: View {
                         )
                         .padding(.bottom)
                 }
-            }else{
+            } else {
                 
             }
         }
