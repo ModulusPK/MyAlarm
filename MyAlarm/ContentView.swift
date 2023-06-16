@@ -15,21 +15,21 @@ struct ContentView: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack (alignment: .leading){
-                    ScrollView{
-                        ForEach(alarms.alarms){alarm in
-                            HStack{
+                    ScrollView {
+                        ForEach(alarms.alarms) { alarm in
+                            HStack {
                                 VStack(alignment: .leading){
                                     Text(alarm.title)
                                     Text(alarm.alarmTime.formatted(date: .omitted, time: .shortened))
                                         .font(.largeTitle)
-                                    HStack{
+                                    HStack {
                                         ForEach(alarm.daysInWords, id: \.self){ day in
                                             Text(day)
                                         }
                                     }
                                 }
                                 Spacer()
-                                if(alarm.active){
+                                if(alarm.active) {
                                     Image(systemName: "bell")
                                         .resizable()
                                         .scaledToFit()
@@ -38,8 +38,7 @@ struct ContentView: View {
                                         .onTapGesture {
                                             alarms.toggleAlarm(alarm: alarm)
                                         }
-                                }
-                                else{
+                                } else {
                                     Image(systemName: "bell.slash")
                                         .resizable()
                                         .scaledToFit()
@@ -60,9 +59,9 @@ struct ContentView: View {
                         
                     }
                     Spacer()
-                HStack{
+                HStack {
                     Spacer()
-                    NavigationLink(destination: AddAlarmView()){
+                    NavigationLink(destination: AddAlarmView()) {
                         AddAlarmIcon()
                             .foregroundColor(.accentColor)
                             .frame(width: 50, height: 60)
@@ -81,7 +80,7 @@ struct ContentView: View {
                 .background(const.appBg)
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationTitle("Your Alarms")
-                .navigationDestination(for: Alarm.self) {alarm in
+                .navigationDestination(for: Alarm.self) { alarm in
                     AlarmRingingView()
             }
             

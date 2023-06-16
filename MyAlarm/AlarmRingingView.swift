@@ -19,7 +19,7 @@ struct AlarmRingingView: View {
             
             Spacer()
             
-            HStack{
+            HStack {
                 Image(systemName: "figure.strengthtraining.functional")
                     .resizable()
                     .scaledToFit()
@@ -56,7 +56,7 @@ struct AlarmRingingView: View {
                             .animation(.easeOut(duration: 1.5), value: currentTime)
                     )
             )
-            .onReceive(timer, perform: {_ in
+            .onReceive(timer) {_ in
                 if countActive{
                     currentTime += 1
                     if currentTime == 120{
@@ -64,17 +64,17 @@ struct AlarmRingingView: View {
                         
                     }
                 }
-            })
+            }
             
             Spacer()
             
-            Button{
-                if countActive{
+            Button {
+                if countActive {
                     pauseCount()
-                }else{
+                } else {
                     startCount()
                 }
-            }label: {
+            } label: {
                 Text(countActive ? "Pause" : currentTime > 0 && currentTime < 120 ? "Resume" : "Start")
                     .padding()
                     .padding(.horizontal, 80)
@@ -90,7 +90,7 @@ struct AlarmRingingView: View {
                     .padding(.bottom)
             }
             
-            if countActive || (currentTime > 0 && currentTime < 120){
+            if countActive || (currentTime > 0 && currentTime < 120) {
                 Button{
                     stopCount()
                 }label: {
@@ -129,11 +129,11 @@ struct AlarmRingingView: View {
         }
     }
     
-    private func pauseCount(){
+    private func pauseCount() {
         countActive = false
     }
     
-    private func stopCount(){
+    private func stopCount() {
         countActive = false
         currentTime = 0
     }

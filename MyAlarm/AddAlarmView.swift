@@ -21,7 +21,7 @@ struct AddAlarmView: View {
     let days: [String] = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
     var dateComponentsArray: [DateComponents] {
         var dateComponentsArray: [DateComponents] = []
-        for day in selectedDays{
+        for day in selectedDays {
             var dateComp = DateComponents()
             dateComp.hour = Calendar.current.component(.hour, from: alarmTime)
             dateComp.minute = Calendar.current.component(.minute, from: alarmTime)
@@ -35,8 +35,8 @@ struct AddAlarmView: View {
         VStack{
             Spacer()
             VStack(alignment: .leading){
-                HStack{
-                    VStack(alignment: .leading){
+                HStack {
+                    VStack(alignment: .leading) {
                         Text("Name")
                         TextField("Name of Alarm", text: $alarmTitle)
                     }
@@ -50,7 +50,7 @@ struct AddAlarmView: View {
                 }
                 .padding(.vertical)
                 
-                HStack{
+                HStack {
                     DatePicker("Choose Time", selection: $alarmTime, displayedComponents: .hourAndMinute)
                         .padding(.vertical)
                         .datePickerStyle(.automatic)
@@ -63,7 +63,7 @@ struct AddAlarmView: View {
                 }
                 
                 HStack{
-                    ForEach(days.indices, id: \.self){index in
+                    ForEach(days.indices, id: \.self) { index in
                         Text(days[index])
                             .font(.caption2)
                             .padding(5)
@@ -78,7 +78,7 @@ struct AddAlarmView: View {
                 }
                 .padding(.vertical)
                 
-                VStack(alignment: .leading){
+                VStack(alignment: .leading) {
                     Text("Alarm Tune")
                         .font(.caption)
                     Text("Alarm Ringtone")
@@ -98,17 +98,15 @@ struct AddAlarmView: View {
         .navigationTitle("Alarm")
     }
     
-    func dayBackgroundColor(index : Int){
+    func dayBackgroundColor(index: Int) {
         if selectedDays.contains(index){
-            selectedDays.removeAll{ $0 == index }
-        }
-        else
-        {
+            selectedDays.removeAll { $0 == index }
+        } else {
             selectedDays.append(index)
         }
     }
     
-    func save(){
+    func save() {
         let alarm = Alarm(id: "\(alarmTitle):\(alarmTime.formatted())", title: alarmTitle, alarmTime: alarmTime, active: true, repeatDays: dateComponentsArray)
         
         alarmsVM.alarms.append(alarm)
@@ -117,8 +115,6 @@ struct AddAlarmView: View {
         alarmsVM.saveToFileManager()
         dismiss()
     }
-    
-
 }
 
 struct AddAlarmView_Previews: PreviewProvider {
