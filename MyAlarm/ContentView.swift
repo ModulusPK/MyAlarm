@@ -81,7 +81,7 @@ struct ContentView: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationTitle("Your Alarms")
                 .navigationDestination(for: Alarm.self) { alarm in
-                    AlarmRingingView()
+                    AlarmRingingScreen()
             }
             
         }
