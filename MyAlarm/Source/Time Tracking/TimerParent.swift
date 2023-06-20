@@ -41,7 +41,7 @@ struct TimerParent: View {
                     Spacer()
                     
                     VStack {
-                        Text(timerVM.formatTime(timerVM.currentTime))
+                        Text(timerVM.formatTime())
                             .font(.custom("Georgia", size: 70, relativeTo: .largeTitle))
                             .foregroundColor(.white)
                         

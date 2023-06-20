@@ -10,6 +10,7 @@ import SwiftUI
 struct BreakTimeView: View {
     
     @Environment(\.dismiss) var dismiss
+    @StateObject var breakTimeVM = BreakTimeViewModel()
     @ObservedObject var timerVM: TimerViewModel
     let timer = Timer.TimerPublisher(interval: 1, runLoop: .main, mode: .common).autoconnect()
     
@@ -17,15 +18,15 @@ struct BreakTimeView: View {
         ZStack {
             ScrollView {
                 VStack {
-                    Text("This break ends in \(timerVM.formatTime(timerVM.breakTimeCount))")
+                    Text("This break ends in \(breakTimeVM.formatTime())")
                         .padding()
                         .padding(.top, 50)
                         .onReceive(timer) {_ in
-                            if timerVM.timerCountActive {
-                                timerVM.breakTimeCount -= 1
-                                if timerVM.breakTimeCount == 0{
-                                    timerVM.timerCountActive = false
-                                    timerVM.isBreakTime = true
+                            if breakTimeVM.timerCountActive {
+                                breakTimeVM.breakTimeCount -= 1
+                                if breakTimeVM.breakTimeCount == 0{
+                                    breakTimeVM.timerCountActive = false
+                                    breakTimeVM.breakActive = true
                                 }
                             }
                         }
@@ -36,7 +37,7 @@ struct BreakTimeView: View {
                         
                         ForEach(BreakTimeInsight.example, id: \.self) {item in
                             HStack {
-                                Toggle(isOn: $timerVM.toggleChoice) {
+                                Toggle(isOn: $breakTimeVM.toggleChoice) {
                                     Text("on")
                                 }
                                 .labelsHidden()
@@ -64,13 +65,13 @@ struct BreakTimeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             
-            if timerVM.isBreakTime {
+            if breakTimeVM.breakActive {
                 ZStack {
                     Color.black.opacity(0.8)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     VStack {
-                        Text("🎉")
+                        Text("💻")
                             .font(.largeTitle)
                             .padding()
                         
@@ -82,7 +83,7 @@ struct BreakTimeView: View {
                         
                         HStack {
                             Button {
-                                timerVM.endBreak()
+                                breakTimeVM.endBreak()
                                 timerVM.extendWork()
                                 dismiss()
                             } label: {
@@ -97,7 +98,7 @@ struct BreakTimeView: View {
                             }
                             
                             Button {
-                                timerVM.extendBreak()
+                                breakTimeVM.extendBreak()
                                 
                             } label: {
                                 Text("Extend")
@@ -121,8 +122,8 @@ struct BreakTimeView: View {
         .background(.red)
         .ignoresSafeArea()
         .onAppear {
-            timerVM.timerCountActive = true
-            timerVM.breakTimeCount = 5
+            breakTimeVM.timerCountActive = true
+            breakTimeVM.breakTimeCount = 5
         }
         .navigationBarBackButtonHidden(true)
     }

@@ -24,6 +24,7 @@
 		29551D042A41DC7800A48546 /* NotificationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29551D032A41DC7800A48546 /* NotificationProtocol.swift */; };
 		29551D062A41DF8200A48546 /* AlarmParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29551D052A41DF8200A48546 /* AlarmParent.swift */; };
 		29551D082A41EAE000A48546 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29551D072A41EAE000A48546 /* TimerViewModel.swift */; };
+		29551D0A2A42018300A48546 /* BreakTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29551D092A42018300A48546 /* BreakTimeViewModel.swift */; };
 		295BC5FA2A31A48F0061EC76 /* MyAlarmApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC5F92A31A48F0061EC76 /* MyAlarmApp.swift */; };
 		295BC5FC2A31A48F0061EC76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC5FB2A31A48F0061EC76 /* ContentView.swift */; };
 		295BC5FE2A31A4910061EC76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 295BC5FD2A31A4910061EC76 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		29551D032A41DC7800A48546 /* NotificationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProtocol.swift; sourceTree = "<group>"; };
 		29551D052A41DF8200A48546 /* AlarmParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmParent.swift; sourceTree = "<group>"; };
 		29551D072A41EAE000A48546 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		29551D092A42018300A48546 /* BreakTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakTimeViewModel.swift; sourceTree = "<group>"; };
 		295BC5F62A31A48F0061EC76 /* MyAlarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAlarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295BC5F92A31A48F0061EC76 /* MyAlarmApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlarmApp.swift; sourceTree = "<group>"; };
 		295BC5FB2A31A48F0061EC76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			children = (
 				295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */,
 				29551D072A41EAE000A48546 /* TimerViewModel.swift */,
+				29551D092A42018300A48546 /* BreakTimeViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				293C1F642A323FB900E717DA /* CustomShapes.swift in Sources */,
 				295BC60C2A31AD900061EC76 /* AddAlarmView.swift in Sources */,
 				295BC60A2A31A98F0061EC76 /* AlarmViewModel.swift in Sources */,
+				29551D0A2A42018300A48546 /* BreakTimeViewModel.swift in Sources */,
 				29551CF62A40A3B200A48546 /* MbadokView.swift in Sources */,
 				295BC5FC2A31A48F0061EC76 /* ContentView.swift in Sources */,
 				29551CEF2A4069C600A48546 /* OnboardingViewModel.swift in Sources */,
