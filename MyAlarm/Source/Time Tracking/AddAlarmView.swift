@@ -72,7 +72,7 @@ struct AddAlarmView: View {
                             .foregroundColor(.black)
                             .clipShape(Circle())
                             .onTapGesture {
-                                let _ = dayBackgroundColor(index: index + 1)
+                                let _ = daySelected(index: index + 1)
                             }
                     }
                 }
@@ -98,7 +98,7 @@ struct AddAlarmView: View {
         .navigationTitle("Alarm")
     }
     
-    func dayBackgroundColor(index: Int) {
+    func daySelected(index: Int) {
         if selectedDays.contains(index){
             selectedDays.removeAll { $0 == index }
         } else {
@@ -107,7 +107,7 @@ struct AddAlarmView: View {
     }
     
     func save() {
-        let alarm = Alarm(id: "\(alarmTitle):\(alarmTime.formatted())", title: alarmTitle, alarmTime: alarmTime, active: true, repeatDays: dateComponentsArray)
+        let alarm = Alarm(id: "\(alarmTitle):\(alarmTime.formatted())", title: alarmTitle, notificationTime: alarmTime, active: true, repeatDays: dateComponentsArray)
         
         alarmsVM.alarms.append(alarm)
         
@@ -118,7 +118,7 @@ struct AddAlarmView: View {
 }
 
 struct AddAlarmView_Previews: PreviewProvider {
-    @StateObject static var x = AlarmViewModel()
+    @StateObject static var x = AlarmViewModel(notificationManager: NotificationManager(), filesClient: FilesClient())
     static var previews: some View {
         NavigationStack{
             AddAlarmView()

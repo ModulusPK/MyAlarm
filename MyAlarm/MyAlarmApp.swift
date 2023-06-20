@@ -10,11 +10,11 @@ import SwiftUI
 @main
 struct MyAlarmApp: App {
     
-    @StateObject var alarms = AlarmViewModel()
+    @StateObject var alarms = AlarmViewModel(notificationManager: notificationManager, filesClient: filesClient)
     
     var body: some Scene {
         WindowGroup {
-            AlarmRingingScreen()
+            TimerParent()
                 .environmentObject(alarms)
         }
     }
@@ -29,3 +29,6 @@ struct MyAlarmApp: App {
         }
     }
 }
+
+let notificationManager = NotificationManager()
+let filesClient = FilesClient()

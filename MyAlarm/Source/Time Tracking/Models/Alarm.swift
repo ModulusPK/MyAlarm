@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Alarm : Identifiable, Codable, Hashable {
+struct Alarm : NotificationProtocol {
     var id : String
     var title : String
-    var alarmTime : Date
+    var notificationTime: Date
     var active : Bool
     var repeatDays : [DateComponents]
     var toRepeat : Bool{
