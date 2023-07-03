@@ -79,9 +79,9 @@
 		29551CE22A40577F00A48546 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				29551CE32A40579000A48546 /* Models */,
 				29551CED2A40698F00A48546 /* View Models */,
 				29551CE42A40652D00A48546 /* Views */,
-				29551CE32A40579000A48546 /* Models */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -115,8 +115,8 @@
 		29551CF02A409E9300A48546 /* Mbadok */ = {
 			isa = PBXGroup;
 			children = (
-				29551CF22A409EB300A48546 /* Views */,
 				29551CF12A409EA200A48546 /* Models */,
+				29551CF22A409EB300A48546 /* Views */,
 			);
 			path = Mbadok;
 			sourceTree = "<group>";
@@ -175,8 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				62DF62BB2A3CE2D300D97942 /* Source */,
-				295BC5F92A31A48F0061EC76 /* MyAlarmApp.swift */,
-				295BC5FB2A31A48F0061EC76 /* ContentView.swift */,
 				295BC5FD2A31A4910061EC76 /* Assets.xcassets */,
 				295BC5FF2A31A4910061EC76 /* Preview Content */,
 			);
@@ -194,12 +192,14 @@
 		62DF62BB2A3CE2D300D97942 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				295BC5F92A31A48F0061EC76 /* MyAlarmApp.swift */,
+				295BC5FB2A31A48F0061EC76 /* ContentView.swift */,
+				62DF62BE2A3CE30E00D97942 /* Constants */,
 				29551D022A41DC5700A48546 /* CustomProtocols */,
+				29551CFF2A41D25300A48546 /* Helpers */,
 				29551CF02A409E9300A48546 /* Mbadok */,
 				29551CE22A40577F00A48546 /* Onboarding */,
-				62DF62BE2A3CE30E00D97942 /* Constants */,
 				62DF62BC2A3CE2DE00D97942 /* Time Tracking */,
-				29551CFF2A41D25300A48546 /* Helpers */,
 			);
 			path = Source;
 			sourceTree = "<group>";

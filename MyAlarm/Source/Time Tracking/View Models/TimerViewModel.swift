@@ -12,21 +12,21 @@ class TimerViewModel: ObservableObject {
 
     @Published var countActive: Bool = false
     @Published var breakTime: Bool = false
-    @Published var currentTime: TimeInterval = 0
+    @Published var count: TimeInterval = 0
     @Published var progressMax: Double = 7
     @Published var path: NavigationPath = NavigationPath()
     let checkPoint: Double = 7
     
     func formatTime() -> String {
-        let minutes = Int(currentTime/60)
-        let seconds = Int(currentTime.truncatingRemainder(dividingBy: 60))
+        let minutes = Int(count/60)
+        let seconds = Int(count.truncatingRemainder(dividingBy: 60))
         return String(format: "%02d:%02d", minutes, seconds)
     }
     
     func startCount() {
         countActive = true
-        if currentTime == checkPoint {
-            currentTime = 0
+        if count == checkPoint {
+            count = 0
         }
     }
     
@@ -36,7 +36,7 @@ class TimerViewModel: ObservableObject {
     
     func stopCount() {
         countActive = false
-        currentTime = 0
+        count = 0
     }
     
     func extendWork() {

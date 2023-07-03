@@ -55,16 +55,16 @@ struct TimerParent: View {
                             .stroke(.white, lineWidth: 10)
                             .overlay(
                                 Circle()
-                                    .trim(from: 0, to: timerVM.currentTime/timerVM.progressMax)
+                                    .trim(from: 0, to: timerVM.count/timerVM.progressMax)
                                     .stroke(Gradient(colors: [.red, .orange]), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
                                     .rotationEffect(.degrees(-90))
-                                    .animation(.easeOut(duration: 1.5), value: timerVM.currentTime)
+                                    .animation(.easeOut(duration: 1.5), value: timerVM.count)
                             )
                     )
                     .onReceive(timer) {_ in
                         if timerVM.countActive {
-                            timerVM.currentTime += 1
-                            if timerVM.currentTime.truncatingRemainder(dividingBy: timerVM.checkPoint) == 0 {
+                            timerVM.count += 1
+                            if timerVM.count.truncatingRemainder(dividingBy: timerVM.checkPoint) == 0 {
                                 timerVM.countActive = false
                                 timerVM.breakTime = true
                             }
@@ -80,7 +80,7 @@ struct TimerParent: View {
                             timerVM.startCount()
                         }
                     } label: {
-                        Text(timerVM.countActive ? "Pause" : timerVM.currentTime > 0 && timerVM.currentTime < timerVM.checkPoint ? "Resume" : "Start")
+                        Text(timerVM.countActive ? "Pause" : timerVM.count > 0 && timerVM.count < timerVM.checkPoint ? "Resume" : "Start")
                             .padding()
                             .padding(.horizontal, 80)
                             .bold()
@@ -95,7 +95,7 @@ struct TimerParent: View {
                             .padding(.bottom)
                     }
                     
-                    if timerVM.countActive || (timerVM.currentTime > 0 && timerVM.currentTime < timerVM.checkPoint) {
+                    if timerVM.countActive || (timerVM.count > 0 && timerVM.count < timerVM.checkPoint) {
                         Button{
                             timerVM.stopCount()
                         }label: {
