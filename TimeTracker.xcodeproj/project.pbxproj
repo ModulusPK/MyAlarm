@@ -32,6 +32,11 @@
 		295BC6082A31A4B00061EC76 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC6072A31A4B00061EC76 /* Alarm.swift */; };
 		295BC60A2A31A98F0061EC76 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */; };
 		295BC60C2A31AD900061EC76 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC60B2A31AD900061EC76 /* AddAlarmView.swift */; };
+		2974601A2A540C290017F1A8 /* OnboardingParent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297460192A540C290017F1A8 /* OnboardingParent.swift */; };
+		2974601C2A54160D0017F1A8 /* OnboardingTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974601B2A54160D0017F1A8 /* OnboardingTimerView.swift */; };
+		2974601E2A54163A0017F1A8 /* OnboardingInvoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974601D2A54163A0017F1A8 /* OnboardingInvoiceView.swift */; };
+		297460202A5420360017F1A8 /* OnboardingThirdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2974601F2A5420360017F1A8 /* OnboardingThirdView.swift */; };
+		297460232A5423E80017F1A8 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297460222A5423E80017F1A8 /* HomeView.swift */; };
 		298D17312A39AC5300A2CF1F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D17302A39AC5300A2CF1F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +67,11 @@
 		295BC6072A31A4B00061EC76 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		295BC6092A31A98F0061EC76 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		295BC60B2A31AD900061EC76 /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
+		297460192A540C290017F1A8 /* OnboardingParent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingParent.swift; sourceTree = "<group>"; };
+		2974601B2A54160D0017F1A8 /* OnboardingTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTimerView.swift; sourceTree = "<group>"; };
+		2974601D2A54163A0017F1A8 /* OnboardingInvoiceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInvoiceView.swift; sourceTree = "<group>"; };
+		2974601F2A5420360017F1A8 /* OnboardingThirdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingThirdView.swift; sourceTree = "<group>"; };
+		297460222A5423E80017F1A8 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		298D17302A39AC5300A2CF1F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,6 +110,10 @@
 				29551CE72A40672200A48546 /* LoginView.swift */,
 				29551CE92A40673800A48546 /* ForgotPasswordView.swift */,
 				29551CEB2A40674A00A48546 /* ResetPasswordView.swift */,
+				297460192A540C290017F1A8 /* OnboardingParent.swift */,
+				2974601B2A54160D0017F1A8 /* OnboardingTimerView.swift */,
+				2974601D2A54163A0017F1A8 /* OnboardingInvoiceView.swift */,
+				2974601F2A5420360017F1A8 /* OnboardingThirdView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,9 +203,18 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		297460212A5423D40017F1A8 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				297460222A5423E80017F1A8 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		62DF62BB2A3CE2D300D97942 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				297460212A5423D40017F1A8 /* Home */,
 				295BC5F92A31A48F0061EC76 /* TimeTrackerApp.swift */,
 				295BC5FB2A31A48F0061EC76 /* ContentView.swift */,
 				62DF62BE2A3CE30E00D97942 /* Constants */,
@@ -323,24 +346,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2974601A2A540C290017F1A8 /* OnboardingParent.swift in Sources */,
 				293C1F642A323FB900E717DA /* CustomShapes.swift in Sources */,
 				295BC60C2A31AD900061EC76 /* AddAlarmView.swift in Sources */,
 				295BC60A2A31A98F0061EC76 /* AlarmViewModel.swift in Sources */,
 				29551D0A2A42018300A48546 /* BreakTimeViewModel.swift in Sources */,
+				2974601E2A54163A0017F1A8 /* OnboardingInvoiceView.swift in Sources */,
 				29551CF62A40A3B200A48546 /* MbadokView.swift in Sources */,
 				295BC5FC2A31A48F0061EC76 /* ContentView.swift in Sources */,
 				29551CEF2A4069C600A48546 /* OnboardingViewModel.swift in Sources */,
 				295BC5FA2A31A48F0061EC76 /* TimeTrackerApp.swift in Sources */,
 				29551CEC2A40674A00A48546 /* ResetPasswordView.swift in Sources */,
 				29551CE62A40671300A48546 /* SignUpView.swift in Sources */,
+				297460232A5423E80017F1A8 /* HomeView.swift in Sources */,
 				293C1F662A3274B000E717DA /* TimerParent.swift in Sources */,
 				29551CE82A40672200A48546 /* LoginView.swift in Sources */,
 				29551CF82A40A47F00A48546 /* Mbadok.swift in Sources */,
 				295BC6082A31A4B00061EC76 /* Alarm.swift in Sources */,
+				2974601C2A54160D0017F1A8 /* OnboardingTimerView.swift in Sources */,
 				29551CEA2A40673800A48546 /* ForgotPasswordView.swift in Sources */,
 				29551D042A41DC7800A48546 /* NotificationProtocol.swift in Sources */,
 				29551CFA2A412CBE00A48546 /* BreakTimeView.swift in Sources */,
 				29551CFE2A41CF3900A48546 /* NotificationManager.swift in Sources */,
+				297460202A5420360017F1A8 /* OnboardingThirdView.swift in Sources */,
 				29551CFC2A41327000A48546 /* BreakTimeInsight.swift in Sources */,
 				298D17312A39AC5300A2CF1F /* Constants.swift in Sources */,
 				29551D012A41D4A200A48546 /* FilesClient.swift in Sources */,

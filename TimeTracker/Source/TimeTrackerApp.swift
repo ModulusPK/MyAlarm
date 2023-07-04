@@ -14,7 +14,7 @@ struct TimeTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TimerParent()
+            OnboardingParent()
                 .environmentObject(alarms)
         }
     }
