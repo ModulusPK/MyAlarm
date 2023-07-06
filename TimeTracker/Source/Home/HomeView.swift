@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @EnvironmentObject var taskVM: TaskViewModel
+    @State private var navPath = [String]()
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -15,22 +19,25 @@ struct HomeView: View {
                     Text("Today so far!")
                         .bold()
                     Spacer()
-                    Text("+")
-                        .padding(15)
-                        .font(.title)
-                        .background(.green)
-                        .clipShape(Circle())
+                    NavigationLink(destination: CreateTaskView()) {
+                        Text("+")
+                            .padding(15)
+                            .font(.title)
+                            .background(.green)
+                            .clipShape(Circle())
+                    }
+                    
                 }
                 
                 List{
-                    ForEach(1..<10) {_ in
+                    ForEach(taskVM.tasks) {task in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("1hr 20min")
+                                Text(/*"1hr 20min"*/"\(formatTime(taskTime: task.totalTime))")
                                     .foregroundColor(.green)
-                                Text("Database Schema")
+                                Text(task.taskName)
                                     .foregroundColor(.white)
-                                Text("Dev fitness")
+                                Text(task.projectName)
                                     .foregroundColor(.gray)
                             }
                             Spacer()
@@ -59,7 +66,15 @@ struct HomeView: View {
             .background(.black.opacity(0.8))
             .foregroundColor(.white)
             .navigationBarBackButtonHidden(true)
+            
         }
+    }
+    
+    func formatTime(taskTime: Double) -> String {
+        let hours = Int(taskTime/3600)
+        let minutes = Int(taskTime/60)
+        let seconds = Int(taskTime.truncatingRemainder(dividingBy: 60))
+        return String(format: "%02dhr %02dmin %02dsecs", hours, minutes, seconds)
     }
 }
 

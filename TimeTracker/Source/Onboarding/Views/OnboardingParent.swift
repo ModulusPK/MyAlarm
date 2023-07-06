@@ -10,7 +10,7 @@ import SwiftUI
 struct OnboardingParent: View {
     var body: some View {
         NavigationStack {
-            VStack{
+            VStack {
                 TabView {
                     OnboardingTimerView()
                     OnboardingInvoiceView()

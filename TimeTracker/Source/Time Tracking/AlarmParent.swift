@@ -82,7 +82,7 @@ struct AlarmParent: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationTitle("Your Alarms")
                 .navigationDestination(for: Alarm.self) { alarm in
-                    TimerParent()
+                    TimerParent(taskName: "", projectName: "", CompanyName: "")
             }
             
         }
