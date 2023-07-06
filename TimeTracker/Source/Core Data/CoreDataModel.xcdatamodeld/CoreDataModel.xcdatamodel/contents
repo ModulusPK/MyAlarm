@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="TaskTime" representedClassName="TaskTime" syncable="YES">
+        <attribute name="endTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="startTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="trackedTask" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TrackedTask" inverseName="arrayOfTaskTimes" inverseEntity="TrackedTask"/>
+    </entity>
+    <entity name="TrackedTask" representedClassName="TrackedTask" syncable="YES">
+        <attribute name="companyName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="projectName" optional="YES" attributeType="String"/>
+        <attribute name="taskName" optional="YES" attributeType="String"/>
+        <relationship name="arrayOfTaskTimes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskTime" inverseName="trackedTask" inverseEntity="TaskTime"/>
+    </entity>
+</model>

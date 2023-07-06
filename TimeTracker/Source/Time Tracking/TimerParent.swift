@@ -9,8 +9,7 @@ import SwiftUI
 
 struct TimerParent: View {
     
-    @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var taskVM: TaskViewModel
+    @Environment(\.managedObjectContext) var moc
     @StateObject var timerVM = TimerViewModel()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var taskName: String
@@ -18,7 +17,7 @@ struct TimerParent: View {
     var CompanyName: String
     @State private var startTime: Double = 0
     @State private var endTime: Double = 0
-    @State private var times: [TaskTime] = []
+    @State private var tasktimes: Set<TaskTime> = []
     
     var body: some View {
             ZStack{
@@ -99,11 +98,11 @@ struct TimerParent: View {
                     }
                     
                     if timerVM.countActive || (timerVM.count > 0 && timerVM.count < timerVM.checkPoint) {
-                        Button{
+                        Button {
                             saveTimes()
                             createTask()
                             timerVM.stopCount()
-                        }label: {
+                        } label: {
                             Text("Stop")
                                 .padding()
                                 .padding(.horizontal, 80)
@@ -178,7 +177,7 @@ struct TimerParent: View {
             }
             .frame(maxWidth: .infinity)
             .background(const.appBg)
-            .onAppear{
+            .onAppear {
                 startTime = endTime
             }
             //.navigationBarBackButtonHidden(true)
@@ -186,12 +185,27 @@ struct TimerParent: View {
     
     func saveTimes() {
         endTime = timerVM.count
-        let taskTime = TaskTime(startTime: startTime, endTime: endTime)
-        times.append(taskTime)
+        let taskTime = TaskTime(context: moc)
+        taskTime.id = UUID()
+        taskTime.startTime = startTime
+        taskTime.endTime = endTime
+        
+        tasktimes.insert(taskTime)
     }
+    
     func createTask() {
-        let taskModel = TaskModel(taskName: taskName, projectName: projectName, companyName: CompanyName, taskTimes: times)
-        taskVM.tasks.append(taskModel)
+        let task = TrackedTask(context: moc)
+        task.id = UUID()
+        task.taskName = taskName
+        task.projectName = projectName
+        task.companyName = CompanyName
+        task.arrayOfTaskTimes = tasktimes as NSSet
+        
+        do {
+            try moc.save()
+        } catch {
+            print("save to coredata failed, error: \(error.localizedDescription)")
+        }
     }
 }
 
