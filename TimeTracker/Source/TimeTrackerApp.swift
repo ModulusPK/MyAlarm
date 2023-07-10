@@ -11,11 +11,13 @@ import SwiftUI
 struct TimeTrackerApp: App {
     
     @StateObject var alarms = AlarmViewModel(notificationManager: notificationManager, filesClient: filesClient)
+    @StateObject var taskVM = TaskViewModel()
     
     var body: some Scene {
         WindowGroup {
             OnboardingParent()
                 .environmentObject(alarms)
+                .environmentObject(taskVM)
         }
     }
     
