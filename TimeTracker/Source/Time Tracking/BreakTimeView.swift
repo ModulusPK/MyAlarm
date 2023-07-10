@@ -67,9 +67,10 @@ struct BreakTimeView: View {
             
             if breakTimeVM.breakActive {
                 ZStack {
-                    Color.black.opacity(0.8)
+                    Color.gray
+                        .blur(radius: 200)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
+                        .edgesIgnoringSafeArea(.all)
                     VStack {
                         Text("💻")
                             .font(.largeTitle)
@@ -113,7 +114,7 @@ struct BreakTimeView: View {
                         .padding(.vertical)
                     }
                     .padding()
-                    .background(.gray.opacity(0.7))
+                    .background(.black)
                     .cornerRadius(15)
                 }
             }
