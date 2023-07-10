@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var taskVM: TaskViewModel
+    @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "taskName", ascending: true)]) var tasks: FetchedResults<TrackedTask>
     @State private var navPath = [String]()
     
     var body: some View {
@@ -30,14 +30,14 @@ struct HomeView: View {
                 }
                 
                 List{
-                    ForEach(taskVM.tasks) {task in
+                    ForEach(tasks) {task in
                         HStack {
                             VStack(alignment: .leading) {
-                                Text(/*"1hr 20min"*/"\(formatTime(taskTime: task.totalTime))")
+                                Text("\(formatTime(taskTime: task.totalTime))")
                                     .foregroundColor(.green)
-                                Text(task.taskName)
+                                Text(task.unwrappedTaskName)
                                     .foregroundColor(.white)
-                                Text(task.projectName)
+                                Text(task.unwrappedProjectName)
                                     .foregroundColor(.gray)
                             }
                             Spacer()
