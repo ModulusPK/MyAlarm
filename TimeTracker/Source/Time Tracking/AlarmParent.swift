@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AlarmParent: View {
     
+    @Binding var navPath: NavigationPath
     @EnvironmentObject var alarms : AlarmViewModel
     @State private var path = NavigationPath()
     
@@ -82,7 +83,7 @@ struct AlarmParent: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .navigationTitle("Your Alarms")
                 .navigationDestination(for: Alarm.self) { alarm in
-                    TimerParent(taskName: "", projectName: "", CompanyName: "")
+                    TimerParent(navPath: $navPath, taskName: "", projectName: "", CompanyName: "")
             }
             
         }
@@ -91,10 +92,11 @@ struct AlarmParent: View {
 
 struct AlarmParent_Previews: PreviewProvider {
     
+    @State static var navPath = NavigationPath()
     @StateObject static var alarm = AlarmViewModel(notificationManager: NotificationManager(), filesClient: FilesClient())
     
     static var previews: some View {
-        AlarmParent()
+        AlarmParent(navPath: $navPath)
             .environmentObject(alarm)
     }
 }

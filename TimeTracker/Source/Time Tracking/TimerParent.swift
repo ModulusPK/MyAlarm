@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimerParent: View {
     
+    @Binding var navPath: NavigationPath
     @Environment(\.managedObjectContext) var moc
     @StateObject var timerVM = TimerViewModel()
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -102,6 +103,7 @@ struct TimerParent: View {
                         saveTimes()
                         createTask()
                         timerVM.stopCount()
+                        navPath.removeLast()
                     } label: {
                         Text("Stop")
                             .padding()
@@ -145,7 +147,7 @@ struct TimerParent: View {
                                 saveTimes()
                                 timerVM.takeBreak()
                             } label: {
-                                NavigationLink(destination: BreakTimeView(timerVM: timerVM)) {
+                                NavigationLink(destination: BreakTimeView(navPath: $navPath, timerVM: timerVM)) {
                                     Text("Okay")
                                         .padding()
                                         .frame(width: 120)
@@ -214,9 +216,10 @@ struct TimerParent: View {
 }
 
 struct TimerParent_Previews: PreviewProvider {
+    @State static var navPath = NavigationPath()
     static var previews: some View {
         NavigationStack {
-            TimerParent(taskName: "", projectName: "", CompanyName: "")
+            TimerParent(navPath: $navPath, taskName: "", projectName: "", CompanyName: "")
         }
     }
 }

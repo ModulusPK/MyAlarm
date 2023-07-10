@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BreakTimeView: View {
     
+    @Binding var navPath: NavigationPath
     @Environment(\.dismiss) var dismiss
     @StateObject var breakTimeVM = BreakTimeViewModel()
     @ObservedObject var timerVM: TimerViewModel
@@ -133,8 +134,9 @@ struct BreakTimeView: View {
 }
 
 struct BreakTimeView_Previews: PreviewProvider {
+    @State static var navPath = NavigationPath()
     @StateObject static var timerVM = TimerViewModel()
     static var previews: some View {
-        BreakTimeView(timerVM: timerVM)
+        BreakTimeView(navPath: $navPath, timerVM: timerVM)
     }
 }

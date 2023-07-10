@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct OnboardingThirdView: View {
+    
+    @State private var navPath: NavigationPath = NavigationPath()
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navPath) {
             VStack {
                 HStack {
                     Image(systemName: "arrowshape.left.fill")
@@ -30,18 +33,32 @@ struct OnboardingThirdView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: HomeView())
-                {
+//                NavigationLink(destination: HomeView(navPath: $navPath))
+//                {
+//                    Text("Get Started")
+//                        .padding()
+//                        .background(.green)
+//                        .cornerRadius(20)
+//                }
+                
+                NavigationLink(value: "home", label: {
                     Text("Get Started")
                         .padding()
                         .background(.green)
                         .cornerRadius(20)
-                }
+                })
                 .padding(.bottom, 60)
                 
             }
             .padding(.horizontal, 80)
             .frame(maxWidth: .infinity)
+            .navigationDestination(for: String.self, destination: {value in
+                if value == "home" {
+                    HomeView(navPath: $navPath)
+                } else if value == "create task" {
+                    CreateTaskView(navPath: $navPath)
+                }
+            })
         }
     }
 }

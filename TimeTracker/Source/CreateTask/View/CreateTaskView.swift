@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CreateTaskView: View {
     
+    @Binding var navPath: NavigationPath
     @State private var taskName = ""
     @State private var projectName = ""
     @State private var companyName = ""
@@ -38,7 +39,7 @@ struct CreateTaskView: View {
             
             HStack {
                 Spacer()
-                NavigationLink(destination: TimerParent(taskName: taskName, projectName: projectName, CompanyName: companyName)) {
+                NavigationLink(destination: TimerParent(navPath: $navPath, taskName: taskName, projectName: projectName, CompanyName: companyName)) {
                     Image(systemName: "play.fill")
                         .resizable()
                         .scaledToFit()
@@ -62,9 +63,10 @@ struct CreateTaskView: View {
 }
 
 struct CreateTaskView_Previews: PreviewProvider {
+    @State static var navPath = NavigationPath()
     static var previews: some View {
         NavigationStack {
-            CreateTaskView()
+            CreateTaskView(navPath: $navPath)
         }
     }
 }
