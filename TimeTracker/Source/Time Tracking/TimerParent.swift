@@ -20,68 +20,90 @@ struct TimerParent: View {
     @State private var tasktimes: Set<TaskTime> = []
     
     var body: some View {
-            ZStack{
+        ZStack{
+            VStack {
+                
+                Spacer()
+                
+                HStack {
+                    Image(systemName: "figure.strengthtraining.functional")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.white)
+                    
+                    Image(systemName: "figure.cooldown")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .foregroundColor(.white)
+                }
+                
+                Spacer()
+                
                 VStack {
+                    Text(timerVM.formatTime())
+                        .font(.largeTitle)
+                        .foregroundColor(.white)
                     
-                    Spacer()
-                    
-                    HStack {
-                        Image(systemName: "figure.strengthtraining.functional")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .foregroundColor(.white)
-                        
-                        Image(systemName: "figure.cooldown")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 100, height: 100)
-                            .foregroundColor(.white)
-                    }
-                    
-                    Spacer()
-                    
-                    VStack {
-                        Text(timerVM.formatTime())
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                        
-                        Text("Current Streak")
-                            .font(.body.weight(.heavy))
-                            .foregroundColor(.white)
-                    }
-                    .padding(70)
-                    .overlay(
-                        Circle()
-                            .stroke(.white, lineWidth: 10)
-                            .overlay(
-                                Circle()
-                                    .trim(from: 0, to: timerVM.count/timerVM.progressMax)
-                                    .stroke(Gradient(colors: [.red, .orange]), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-                                    .rotationEffect(.degrees(-90))
-                                    .animation(.easeOut(duration: 1.5), value: timerVM.count)
-                            )
-                    )
-                    .onReceive(timer) {_ in
-                        if timerVM.countActive {
-                            timerVM.count += 1
-                            if timerVM.count.truncatingRemainder(dividingBy: timerVM.checkPoint) == 0 {
-                                timerVM.countActive = false
-                                timerVM.breakTime = true
-                            }
+                    Text("Current Streak")
+                        .font(.body.weight(.heavy))
+                        .foregroundColor(.white)
+                }
+                .padding(70)
+                .overlay(
+                    Circle()
+                        .stroke(.white, lineWidth: 10)
+                        .overlay(
+                            Circle()
+                                .trim(from: 0, to: timerVM.count/timerVM.progressMax)
+                                .stroke(Gradient(colors: [.red, .orange]), style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
+                                .rotationEffect(.degrees(-90))
+                                .animation(.easeOut(duration: 1.5), value: timerVM.count)
+                        )
+                )
+                .onReceive(timer) {_ in
+                    if timerVM.countActive {
+                        timerVM.count += 1
+                        if timerVM.count.truncatingRemainder(dividingBy: timerVM.checkPoint) == 0 {
+                            timerVM.countActive = false
+                            timerVM.breakTime = true
                         }
                     }
-                    
-                    Spacer()
-                    
+                }
+                
+                Spacer()
+                
+                Button {
+                    if timerVM.countActive {
+                        timerVM.pauseCount()
+                    } else {
+                        timerVM.startCount()
+                    }
+                } label: {
+                    Text(timerVM.countActive ? "Pause" : timerVM.count > 0 && timerVM.count < timerVM.checkPoint ? "Resume" : "Start")
+                        .padding()
+                        .padding(.horizontal, 80)
+                        .bold()
+                        .font(.title3)
+                        .frame(width: 300)
+                        .clipShape(
+                            RoundedRectangle(cornerRadius: 15)
+                        )
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Gradient(colors: [.red, .orange]))
+                        )
+                        .padding(.bottom)
+                }
+                
+                if timerVM.countActive || (timerVM.count > 0 && timerVM.count < timerVM.checkPoint) {
                     Button {
-                        if timerVM.countActive {
-                            timerVM.pauseCount()
-                        } else {
-                            timerVM.startCount()
-                        }
+                        saveTimes()
+                        createTask()
+                        timerVM.stopCount()
                     } label: {
-                        Text(timerVM.countActive ? "Pause" : timerVM.count > 0 && timerVM.count < timerVM.checkPoint ? "Resume" : "Start")
+                        Text("Stop")
                             .padding()
                             .padding(.horizontal, 80)
                             .bold()
@@ -96,91 +118,73 @@ struct TimerParent: View {
                             )
                             .padding(.bottom)
                     }
+                } else {
                     
-                    if timerVM.countActive || (timerVM.count > 0 && timerVM.count < timerVM.checkPoint) {
-                        Button {
-                            saveTimes()
-                            createTask()
-                            timerVM.stopCount()
-                        } label: {
-                            Text("Stop")
-                                .padding()
-                                .padding(.horizontal, 80)
-                                .bold()
-                                .font(.title3)
-                                .frame(width: 300)
-                                .clipShape(
-                                    RoundedRectangle(cornerRadius: 15)
-                                )
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(Gradient(colors: [.red, .orange]))
-                                )
-                                .padding(.bottom)
-                        }
-                    } else {
-                        
-                    }
                 }
-                
-                if timerVM.breakTime {
-                    ZStack {
-                        Color.black.opacity(0.8)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            
+            if timerVM.breakTime {
+                ZStack {
+                    Color.gray
+                        .blur(radius: 200)
+                        .padding(-100)
+                    
+                    VStack {
+                        Text("🎉")
+                            .font(.largeTitle)
+                            .padding()
                         
-                        VStack {
-                            Text("🎉")
-                                .font(.largeTitle)
-                                .padding()
-                            
-                            Text("Hey it's time to take a break!")
-                                .font(.title)
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(.white)
-                                .padding()
-                            
-                            HStack {
-                                Button {
-                                    saveTimes()
-                                    timerVM.takeBreak()
-                                } label: {
-                                    NavigationLink(destination: BreakTimeView(timerVM: timerVM)) {
-                                        Text("Okay")
-                                            .padding()
-                                            .frame(width: 120)
-                                            .background(.gray)
-                                            .foregroundColor(.white)
-                                            .clipShape(RoundedRectangle(cornerRadius: 20))
-                                    }
-                                }
-                                
-                                Button {
-                                    timerVM.extendWork()
-                                } label: {
-                                    Text("Extend")
+                        Text("Hey it's time to take a break!")
+                            .font(.title)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                        HStack {
+                            Button {
+                                saveTimes()
+                                timerVM.takeBreak()
+                            } label: {
+                                NavigationLink(destination: BreakTimeView(timerVM: timerVM)) {
+                                    Text("Okay")
                                         .padding()
                                         .frame(width: 120)
                                         .background(.gray)
                                         .foregroundColor(.white)
                                         .clipShape(RoundedRectangle(cornerRadius: 20))
-                                        
                                 }
                             }
-                            .padding(.vertical)
+                            
+                            Button {
+                                timerVM.extendWork()
+                            } label: {
+                                Text("Extend")
+                                    .padding()
+                                    .frame(width: 120)
+                                    .background(.gray)
+                                    .foregroundColor(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                                
+                            }
                         }
-                        .padding()
-                        .background(.gray.opacity(0.7))
-                        .cornerRadius(15)
+                        .padding(.vertical)
                     }
-                    .padding(.horizontal)
+                    .padding()
+                    .background(.black)
+                    .cornerRadius(15)
                 }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+                .edgesIgnoringSafeArea(.all)
             }
-            .frame(maxWidth: .infinity)
-            .background(const.appBg)
-            .onAppear {
-                startTime = endTime
-            }
-            //.navigationBarBackButtonHidden(true)
+        }
+        .frame(maxWidth: .infinity)
+        .background(const.appBg)
+        .onAppear {
+            startTime = endTime
+        }
+        //.navigationBarBackButtonHidden(true)
     }
     
     func saveTimes() {
