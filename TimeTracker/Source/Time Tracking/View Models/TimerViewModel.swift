@@ -14,7 +14,6 @@ class TimerViewModel: ObservableObject {
     @Published var breakTime: Bool = false
     @Published var count: TimeInterval = 0
     @Published var progressMax: Double = 7
-    @Published var path: NavigationPath = NavigationPath()
     let checkPoint: Double = 7
     
     func formatTime() -> String {
@@ -43,10 +42,5 @@ class TimerViewModel: ObservableObject {
         countActive = true
         breakTime = false
         progressMax += checkPoint
-    }
-    
-    func takeBreak() {
-        breakTime = false
-        path.append("")
     }
 }

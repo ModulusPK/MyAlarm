@@ -2,7 +2,7 @@
 //  TrackedTask+CoreDataProperties.swift
 //  TimeTracker
 //
-//  Created by Danjuma Nasiru on 06/07/2023.
+//  Created by Danjuma Nasiru on 11/07/2023.
 //
 //
 
@@ -20,48 +20,33 @@ extension TrackedTask {
     @NSManaged public var id: UUID?
     @NSManaged public var projectName: String?
     @NSManaged public var taskName: String?
-    @NSManaged public var arrayOfTaskTimes: NSSet?
+    @NSManaged public var startTimes: [Double]?
+    @NSManaged public var endTimes: [Double]?
     
     var totalTime: Double {
-        let taskTimes = arrayOfTaskTimes as? Set<TaskTime> ?? []
         var time: Double = 0
-        for x in taskTimes {
-            time += x.endTime - x.startTime
+        guard let start = startTimes, let end = endTimes else {return time}
+        guard start.count == end.count else {return time}
+        for i in start.indices {
+            time += end[i] - start[i]
         }
         return time
     }
     
     var unwrappedTaskName: String {
-        taskName ?? "Nil task name"
+        taskName ?? "Nil"
     }
     
     var unwrappedCompanyName: String {
-        companyName ?? "Nil company name"
+        companyName ?? "Nil"
     }
     
     var unwrappedProjectName: String {
-        projectName ?? "Nil project name"
+        projectName ?? "Nil"
     }
-
-}
-
-// MARK: Generated accessors for arrayOfTaskTimes
-extension TrackedTask {
-
-    @objc(addArrayOfTaskTimesObject:)
-    @NSManaged public func addToArrayOfTaskTimes(_ value: TaskTime)
-
-    @objc(removeArrayOfTaskTimesObject:)
-    @NSManaged public func removeFromArrayOfTaskTimes(_ value: TaskTime)
-
-    @objc(addArrayOfTaskTimes:)
-    @NSManaged public func addToArrayOfTaskTimes(_ values: NSSet)
-
-    @objc(removeArrayOfTaskTimes:)
-    @NSManaged public func removeFromArrayOfTaskTimes(_ values: NSSet)
-
+    
 }
 
 extension TrackedTask : Identifiable {
-
+    
 }

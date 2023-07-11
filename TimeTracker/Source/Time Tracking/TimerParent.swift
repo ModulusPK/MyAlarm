@@ -18,7 +18,8 @@ struct TimerParent: View {
     var CompanyName: String
     @State private var startTime: Double = 0
     @State private var endTime: Double = 0
-    @State private var tasktimes: Set<TaskTime> = []
+    @State private var startTimes: [Double] = []
+    @State private var endTimes: [Double] = []
     
     var body: some View {
         ZStack{
@@ -144,8 +145,7 @@ struct TimerParent: View {
                         
                         HStack {
                             Button {
-                                saveTimes()
-                                timerVM.takeBreak()
+                                print("test okay")
                             } label: {
                                 NavigationLink(destination: BreakTimeView(navPath: $navPath, timerVM: timerVM)) {
                                     Text("Okay")
@@ -156,6 +156,39 @@ struct TimerParent: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 20))
                                 }
                             }
+                            //this ignores the button action and executes navigation
+                            
+                            
+                            
+//                            NavigationLink(destination: BreakTimeView(navPath: $navPath, timerVM: timerVM)){
+//                                Button{
+//                                    print("test okayyyy")
+//                                } label: {
+//                                    Text("okayyyy")
+//                                        .padding()
+//                                        //.frame(width: 120)
+//                                        .background(.gray)
+//                                        .foregroundColor(.white)
+//                                        .clipShape(RoundedRectangle(cornerRadius: 20))
+//                                }
+//                            }
+        //this ignores the link and executes the button action
+                            
+                            
+                            
+                            
+//                            NavigationLink(destination: BreakTimeView(navPath: $navPath, timerVM: timerVM)) {
+//                                Text("Okaaay")
+//                                    .padding()
+//                                    //.frame(width: 120)
+//                                    .background(.gray)
+//                                    .foregroundColor(.white)
+//                                    .clipShape(RoundedRectangle(cornerRadius: 20))
+//                                    .onTapGesture {
+//                                        print("test okaaay")
+//                                    }
+//                            }
+        //this ignores the link and just executes the tap gesture
                             
                             Button {
                                 timerVM.extendWork()
@@ -184,19 +217,22 @@ struct TimerParent: View {
         .frame(maxWidth: .infinity)
         .background(const.appBg)
         .onAppear {
-            startTime = endTime
+            startTime = timerVM.count
+        }
+        .onDisappear{
+            //doing this here to save start and end times because navigation link can't execute functions
+            saveTimes()
+            print("first")
         }
         //.navigationBarBackButtonHidden(true)
     }
     
     func saveTimes() {
         endTime = timerVM.count
-        let taskTime = TaskTime(context: moc)
-        taskTime.id = UUID()
-        taskTime.startTime = startTime
-        taskTime.endTime = endTime
-        
-        tasktimes.insert(taskTime)
+        startTimes.append(startTime)
+        endTimes.append(endTime)
+        print(endTimes)
+        print(startTimes)
     }
     
     func createTask() {
@@ -205,8 +241,12 @@ struct TimerParent: View {
         task.taskName = taskName
         task.projectName = projectName
         task.companyName = CompanyName
-        task.arrayOfTaskTimes = tasktimes as NSSet
-        
+        task.startTimes = startTimes
+        task.endTimes = endTimes
+        print(task.endTimes ?? [0, 0, 0])
+        print(task.startTimes ?? [1, 2])
+        print(endTimes)
+        print(startTimes)
         do {
             try moc.save()
         } catch {

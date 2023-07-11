@@ -34,8 +34,6 @@
 		295BC60C2A31AD900061EC76 /* AddAlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295BC60B2A31AD900061EC76 /* AddAlarmView.swift */; };
 		296DA1472A54D602001DB0EF /* CreateTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA1462A54D602001DB0EF /* CreateTaskView.swift */; };
 		296DA1512A5697A0001DB0EF /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 296DA14F2A5697A0001DB0EF /* CoreDataModel.xcdatamodeld */; };
-		296DA1562A569D22001DB0EF /* TaskTime+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA1522A569D22001DB0EF /* TaskTime+CoreDataClass.swift */; };
-		296DA1572A569D22001DB0EF /* TaskTime+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA1532A569D22001DB0EF /* TaskTime+CoreDataProperties.swift */; };
 		296DA1582A569D22001DB0EF /* TrackedTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA1542A569D22001DB0EF /* TrackedTask+CoreDataClass.swift */; };
 		296DA1592A569D22001DB0EF /* TrackedTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA1552A569D22001DB0EF /* TrackedTask+CoreDataProperties.swift */; };
 		296DA15B2A56B1EC001DB0EF /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296DA15A2A56B1EC001DB0EF /* DataController.swift */; };
@@ -76,8 +74,6 @@
 		295BC60B2A31AD900061EC76 /* AddAlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlarmView.swift; sourceTree = "<group>"; };
 		296DA1462A54D602001DB0EF /* CreateTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskView.swift; sourceTree = "<group>"; };
 		296DA1502A5697A0001DB0EF /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
-		296DA1522A569D22001DB0EF /* TaskTime+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskTime+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		296DA1532A569D22001DB0EF /* TaskTime+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TaskTime+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		296DA1542A569D22001DB0EF /* TrackedTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackedTask+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		296DA1552A569D22001DB0EF /* TrackedTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrackedTask+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		296DA15A2A56B1EC001DB0EF /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
@@ -236,8 +232,6 @@
 		296DA14E2A569721001DB0EF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				296DA1522A569D22001DB0EF /* TaskTime+CoreDataClass.swift */,
-				296DA1532A569D22001DB0EF /* TaskTime+CoreDataProperties.swift */,
 				296DA1542A569D22001DB0EF /* TrackedTask+CoreDataClass.swift */,
 				296DA1552A569D22001DB0EF /* TrackedTask+CoreDataProperties.swift */,
 				296DA14F2A5697A0001DB0EF /* CoreDataModel.xcdatamodeld */,
@@ -402,7 +396,6 @@
 				295BC5FC2A31A48F0061EC76 /* ContentView.swift in Sources */,
 				29551CEF2A4069C600A48546 /* OnboardingViewModel.swift in Sources */,
 				295BC5FA2A31A48F0061EC76 /* TimeTrackerApp.swift in Sources */,
-				296DA1572A569D22001DB0EF /* TaskTime+CoreDataProperties.swift in Sources */,
 				29551CEC2A40674A00A48546 /* ResetPasswordView.swift in Sources */,
 				29551CE62A40671300A48546 /* SignUpView.swift in Sources */,
 				297460232A5423E80017F1A8 /* HomeView.swift in Sources */,
@@ -426,7 +419,6 @@
 				29551CF42A40A1E700A48546 /* TabViewParent.swift in Sources */,
 				29551D062A41DF8200A48546 /* AlarmParent.swift in Sources */,
 				29551D082A41EAE000A48546 /* TimerViewModel.swift in Sources */,
-				296DA1562A569D22001DB0EF /* TaskTime+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
